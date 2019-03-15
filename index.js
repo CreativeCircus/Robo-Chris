@@ -87,24 +87,24 @@ controller.on('bot_channel_join', function (bot, message) {
     bot.reply(message, "I'm here!")
 });
 
-controller.hears(['hi', '^.*$'], ['direct_message'], function (bot, message) {
-    let answers = [
-        'Did you check the console?',
-        'Do you have the inspector open?',
-        'Restart gulp?',
-        'Have you tried googling it?',
-        'Check the docs.',
-        'Look it up on MDN (not W3).',
-        'Aim higher',
-        'Make cool shit',
-        'Does it match the comps?',
-        'Ugh, I hate react.',
-        'Vue is so much nicer.',
-        `Why does it say resume? It's résumé`,
-    ];
-    let answer = answers[Math.floor(Math.random() * answers.length)]
-    bot.reply(message, answer);
-});
+// controller.hears(['hi', '^.*$'], ['direct_message'], function (bot, message) {
+//     let answers = [
+//         'Did you check the console?',
+//         'Do you have the inspector open?',
+//         'Restart gulp?',
+//         'Have you tried googling it?',
+//         'Check the docs.',
+//         'Look it up on MDN (not W3).',
+//         'Aim higher',
+//         'Make cool shit',
+//         'Does it match the comps?',
+//         'Ugh, I hate react.',
+//         'Vue is so much nicer.',
+//         `Why does it say resume? It's résumé`,
+//     ];
+//     let answer = answers[Math.floor(Math.random() * answers.length)]
+//     bot.reply(message, answer);
+// });
 
 
 
@@ -112,15 +112,30 @@ controller.hears(['hi', '^.*$'], ['direct_message'], function (bot, message) {
  * AN example of what could be:
  * Any un-handled direct mention gets a reaction and a pat response!
  */
-//controller.on('direct_message,mention,direct_mention', function (bot, message) {
-//    bot.api.reactions.add({
-//        timestamp: message.ts,
-//        channel: message.channel,
-//        name: 'robot_face',
-//    }, function (err) {
-//        if (err) {
-//            console.log(err)
-//        }
-//        bot.reply(message, 'I heard you loud and clear boss.');
-//    });
-//});
+controller.on('direct_message,mention,direct_mention', function (bot, message) {
+	bot.api.reactions.add({
+		timestamp: message.ts,
+		channel: message.channel,
+		name: 'robot_face',
+	}, function (err) {
+		if (err) {
+			console.log(err)
+		}
+		let answers = [
+			'Did you check the console?',
+			'Do you have the inspector open?',
+			'Restart gulp?',
+			'Have you tried googling it?',
+			'Check the docs.',
+			'Look it up on MDN (not W3).',
+			'Aim higher',
+			'Make cool shit',
+			'Does it match the comps?',
+			'Ugh, I hate react.',
+			'Vue is so much nicer.',
+			`Why does it say resume? It's résumé`,
+		];
+		let answer = answers[Math.floor(Math.random() * answers.length)]
+		bot.reply(message, answer);
+	});
+});
